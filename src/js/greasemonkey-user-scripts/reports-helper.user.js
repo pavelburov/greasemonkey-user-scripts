@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         reports helper
 // @namespace    pavelburov
-// @version      0.1
+// @version      1.0.0
 // @description  Helps to fill in reports (by pasting string with time spent and description)
 // @author Pavel Burov <burovpavel@gmail.com>
 // @match        https://reports.scand.by/addreportframe.php*
@@ -47,7 +47,7 @@
 
     if (fields.length === 2) {
       hoursInput.value = fields[0];
-      descriptionTextarea.value = fields[1];
+      descriptionTextarea.value = fields[1].replace(/\n/g, '');
     }
   }
 
