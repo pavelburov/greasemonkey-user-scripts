@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         reports helper
 // @namespace    pavelburov
-// @version      1.0.0
+// @version      1.0.1
 // @description  Helps to fill in reports (by pasting string with time spent and description)
 // @author Pavel Burov <burovpavel@gmail.com>
 // @match        https://reports.scand.by/addreportframe.php*
+// @match        https://reports.scand.by/addruframe.php*
 // @grant        none
 // ==/UserScript==
 
