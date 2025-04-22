@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         h-links
 // @namespace    pavelburov
-// @version      0.0.2
+// @version      0.0.3
 // @description  Adds links for headers
 // @author       Pavel Burov <burovpavel@gmail.com>
 // @match        http*://*/*
@@ -50,6 +50,15 @@ function getFirstId(element) {
   return undefined;
 }
 
+function isNeedToProcess(element) {
+  if (element.firstElementChild) {
+    // contains only text
+    return false;
+  }
+  return true;
+}
+
+
 /**
  * Check the element's immediate parent, in search of an appropriate ID to link to
  * Return the ID if found, otherwise undefined
@@ -72,24 +81,26 @@ function getParentId(element) {
   document
     .querySelectorAll('h1, h2, h3, h4, h5, h6')
     .forEach(function (header) {
-      let id = getFirstId(header) || getParentId(header);
-      if (id) {
-        let anchorUrl = `${location.protocol}//${location.host}${location.pathname}${location.search}#${id}`;
+      if (isNeedToProcess(header)) {
+        let id = getFirstId(header) || getParentId(header);
+        if (id) {
+          let anchorUrl = `${location.protocol}//${location.host}${location.pathname}${location.search}#${id}`;
 
-        let copyLink = document.createElement('a');
-        copyLink.href = anchorUrl;
-        copyLink.title = 'Copy link to clipboard';
-        copyLink.textContent = String.fromCodePoint(128279);
-        copyLink.addEventListener('click', function () {
-          navigator.clipboard.writeText(anchorUrl)
-        })
+          let copyLink = document.createElement('a');
+          copyLink.href = anchorUrl;
+          copyLink.title = 'Copy link to clipboard';
+          copyLink.textContent = String.fromCodePoint(128279);
+          copyLink.addEventListener('click', function () {
+            navigator.clipboard.writeText(anchorUrl)
+          })
 
-        let innerDiv = document.createElement('div');
-        innerDiv.className = 'glfh_linkContainer';
-        innerDiv.appendChild(copyLink);
+          let innerDiv = document.createElement('div');
+          innerDiv.className = 'glfh_linkContainer';
+          innerDiv.appendChild(copyLink);
 
-        header.appendChild(innerDiv);
-        header.classList.add('glfh_headerContainer');
+          header.appendChild(innerDiv);
+          header.classList.add('glfh_headerContainer');
+        }
       }
     });
 })();
