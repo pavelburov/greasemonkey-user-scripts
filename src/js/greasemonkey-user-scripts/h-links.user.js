@@ -1,12 +1,34 @@
 // ==UserScript==
 // @name         h-links
 // @namespace    pavelburov
-// @version      0.0.1
-// @description  Adds copy link on hover for headings
+// @version      0.0.2
+// @description  Adds links for headers
 // @author       Pavel Burov <burovpavel@gmail.com>
 // @match        http*://*/*
-// @grant        none
+// @grant        GM_addStyle
 // ==/UserScript==
+
+/* Set the icon's location and fading transition */
+GM_addStyle('.glfh_linkContainer {\n' +
+  '  display: inline;\n' +
+  '  font-size: 75%;\n' +
+  '  opacity: 0.0;\n' +
+  '  padding-left: 10px;\n' +
+  '  transition: all 200ms ease-out;\n' +
+  '  vertical-align: middle;\n' +
+  '}\n');
+
+/* Prevent the icon from showing underlining, etc */
+GM_addStyle('.glfh_linkContainer > a, .glfh_linkContainer > a:hover {\n' +
+  '    border: 0px !important;\n' +
+  '    color: inherit;\n' +
+  '    text-decoration: none !important;\n' +
+  '}');
+
+/* Hovering over the header makes the icon visible */
+GM_addStyle('.glfh_headerContainer:hover .glfh_linkContainer {\n' +
+  '    opacity: 1.0;\n' +
+  '}');
 
 /**
  * Loop recursively through the header and its child elements, in search of an ID to link to
