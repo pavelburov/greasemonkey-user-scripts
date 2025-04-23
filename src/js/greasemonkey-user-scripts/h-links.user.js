@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         h-links
 // @namespace    pavelburov
-// @version      0.0.4
+// @version      0.0.5
 // @description  Adds links for headers
 // @author       Pavel Burov <burovpavel@gmail.com>
 // @match        http*://*/*
@@ -11,11 +11,9 @@
 /* Set the icon's location and fading transition */
 GM_addStyle('.glfh_linkContainer {\n' +
   '  display: inline;\n' +
-  '  font-size: 75%;\n' +
   '  opacity: 0.0;\n' +
   '  padding-left: 10px;\n' +
   '  transition: all 200ms ease-out;\n' +
-  '  vertical-align: middle;\n' +
   '}\n');
 
 /* Prevent the icon from showing underlining, etc */
@@ -89,7 +87,7 @@ function getParentId(element) {
           let copyLink = document.createElement('a');
           copyLink.href = anchorUrl;
           copyLink.title = 'Copy link to clipboard';
-          copyLink.textContent = '#';
+          copyLink.textContent = '##';
           copyLink.addEventListener('click', function () {
             navigator.clipboard.writeText(anchorUrl)
           })
