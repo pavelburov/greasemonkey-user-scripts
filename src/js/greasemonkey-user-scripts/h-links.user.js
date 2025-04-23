@@ -89,7 +89,7 @@ function getParentId(element) {
           let copyLink = document.createElement('a');
           copyLink.href = anchorUrl;
           copyLink.title = 'Copy link to clipboard';
-          copyLink.textContent = String.fromCodePoint(128279);
+          copyLink.textContent = '#';
           copyLink.addEventListener('click', function () {
             navigator.clipboard.writeText(anchorUrl)
           })
