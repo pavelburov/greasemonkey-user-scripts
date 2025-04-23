@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         h-links
 // @namespace    pavelburov
-// @version      0.0.3
+// @version      0.0.4
 // @description  Adds links for headers
 // @author       Pavel Burov <burovpavel@gmail.com>
 // @match        http*://*/*
